@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args); // used for hosting the web ap
 // build-in dependency injection container
 // -> services added to the container can be injected anywhere in the application code
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(); // enough for building an with MVC pattern
 //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // two lines below register on the container the services needed for Swagger 
 builder.Services.AddEndpointsApiExplorer();
@@ -27,8 +27,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting(); // Marks the position in the middleware pipeline where a routing decision is made, i.e. where endpoint is SELECTED
+
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints => // Marks the position in the middleware pipeline where the selected endpoint is EXECUTED
+{
+    endpoints.MapControllers(); // Adds endpoints to controller actions w.o. specifying routes
+});
+
+//app.MapControllers(); // implements IEndpointRouting -> no need to add routing middleware and endpoint middleware to the request pipeline manually
 
 app.Run();
