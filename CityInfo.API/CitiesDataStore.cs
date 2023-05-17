@@ -7,10 +7,10 @@ namespace CityInfo.API
         public List<CityDto> Cities { get; set; } // Cities property
 
         // static property that returns an instance CitiesDataStore
-        //  This is a singleton pattern network. It makes sure that we can keep on
-        //  working on the same store, as long as we don't restart the web server. 
+        // This is a singleton pattern network. It makes sure that we can keep on
+        // working on the same store, as long as we don't restart the web server. 
         public static CitiesDataStore Current { get; } = new CitiesDataStore();
-        public CitiesDataStore() // construct??
+        public CitiesDataStore()
         {
             // init dummy data
             Cities = new List<CityDto>()
