@@ -28,7 +28,7 @@ namespace CityInfo.API.Controllers
 
             // Ok returns an OK result, which implements IActionResult,
             // which defines a contract that represents the result of an action method
-            return Ok(cityToReturn); //
+            return Ok(cityToReturn);
         }
     }
 }
