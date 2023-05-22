@@ -14,6 +14,9 @@
     <None Update="ASP.NET Core Web APIs.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="CleanArchitecture_JasonTaylor.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

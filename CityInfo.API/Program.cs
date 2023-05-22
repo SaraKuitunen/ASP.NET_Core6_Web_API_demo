@@ -1,6 +1,8 @@
 // Top-level statements: compiler will generate main method from the content of this file.
 // That main method is starting point of the app, it is responsible for configuring and runnig the application
 
+using Microsoft.AspNetCore.StaticFiles;
+
 var builder = WebApplication.CreateBuilder(args); // used for hosting the web application
 
 //// Add services to the container.
@@ -22,6 +24,9 @@ builder.Services.AddControllers(options =>
 // two lines below register on the container the services needed for Swagger 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// register FileExtensionContentTypeProvider service with singleton lifetime
+builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
 var app = builder.Build(); // building the app results in an object of type WebApplication
 
