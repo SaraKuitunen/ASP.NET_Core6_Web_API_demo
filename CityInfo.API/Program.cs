@@ -8,13 +8,22 @@ var builder = WebApplication.CreateBuilder(args); // used for hosting the web ap
 // build-in dependency injection container
 // -> services added to the container can be injected anywhere in the application code
 
-builder.Services.AddControllers(); // enough for building an with MVC pattern
+// AddControllers is enough for building an with MVC pattern
+builder.Services.AddControllers(options =>
+{
+    // OutputFormatters list could be used for setting default representations. Not set here -> default is JSON
+
+    // status code 406 Not Acceptable is returned if user asks for non-supported representation
+    options.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters(); // Add XML input and output formatters -> adds support for XML
+;
+
 //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // two lines below register on the container the services needed for Swagger 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build(); // building the we app results in an object of type WebApplication
+var app = builder.Build(); // building the app results in an object of type WebApplication
 
 //// Configure the HTTP request pipeline.
 // Middleware: the components of that handle HTTP requests
