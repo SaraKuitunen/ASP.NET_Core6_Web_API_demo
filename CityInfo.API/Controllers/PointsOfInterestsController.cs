@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CityInfo.API.Controllers
 {
     [Route("api/cities/{cityId}/pointsofinterest/")]
-    [ApiController]
+    [ApiController] // automates API behavior, e.g. will automatically return 400 on validation errors
     public class PointsOfInterestsController : ControllerBase
     {
         [HttpGet] // attribute signifies that this action can be routed to when the HTTP method is GET
@@ -52,6 +52,7 @@ namespace CityInfo.API.Controllers
                                                            // is deserialized to a PointOfInterestForCreationDto
                                                            // FromBody annotation is not needed because ApiController attribute is used
         {
+
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
